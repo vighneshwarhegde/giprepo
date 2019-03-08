@@ -11,6 +11,22 @@
 
     <body ng-app="gip" ng-controller="myCtrl">
        
+        <form name="myForm">
+            <h1>Message Link:</h1> <input type="url" name="MsgLink" > <br>
+            
+            Duplicate Issue Reported: <label><input type="radio" name="Duplicate" value="1" ng-model="radioValue"> Yes</label>
+                                      <input type="radio" name="Duplicate" value="0" ng-model="radioValue" checked> No <br>
+                                    <div1 id="ExtUrl" ng-show="radioValue == '1'">
+                                        Duplicate Message Link: <input type="url" name="MsgLink" >
+                                         <br>
+                                    </div1>
+            Incident Type:<input type="radio" name="Incident" value="Investigation"> Investigation 
+                          <input type="radio" name="Incident" value="Defect/Bug"> Defect/Bug <br>
+            
+                          <input type="button" onclick="alert('Data Saved')" value="SUBMIT">
+                         
+                          
+            </form>
         <div>
                 <h4>CUSTOMER ENVIRONMENT:</h4>
                  Lumira Version
