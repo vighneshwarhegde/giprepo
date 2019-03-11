@@ -1,72 +1,72 @@
 <!DOCTYPE html>
 <html>
-    <head>
-
-        <title>Guided Incident Processing</title>
-        <script src="lib/angular.min.js"></script>
-        <script src="js/app.js"></script>
-        <link href="css/style.css" rel="stylesheet" type="text/css">
-        
-    </head>
-
-    <body ng-app="gip" ng-controller="myCtrl">
-       
-        <form name="myForm">
-            <h1>Message Link:</h1> <input type="url" name="MsgLink" > <br>
-            
-            Duplicate Issue Reported: <label><input type="radio" name="Duplicate" value="1" ng-model="radioValue"> Yes</label>
-                                      <input type="radio" name="Duplicate" value="0" ng-model="radioValue" checked> No <br><br>
+<head>
+    <title>Guided Incident Processing</title>
+    <script src="lib/angular.min.js"></script>
+    <script src="js/app.js"></script>
+    <link href="css/style.css" rel="stylesheet" type="text/css">   
+</head>
+<body ng-app="gip" ng-controller="myCtrl">
+    <form name="myForm">
+        <h1>Message Link:</h1> <input type="url" name="MsgLink" > <br>
+        Duplicate Issue Reported:<label><input type="radio" name="Duplicate" value="1" ng-model="radioValue"> Yes</label>
+                                      <input type="radio" name="Duplicate" value="0" ng-model="radioValue" checked> No <br>
                                     <div1 id="ExtUrl" ng-show="radioValue == '1'">
                                         Duplicate Message Link: <input type="url" name="MsgLink" >
                                          <br>
                                     </div1>
-            Incident Type:<input type="radio" name="Incident" value="Investigation"> Investigation 
+        Incident Type:<input type="radio" name="Incident" value="Investigation"> Investigation 
                           <input type="radio" name="Incident" value="Defect/Bug"> Defect/Bug <br>
-            
                          
-        <div>
-                <h4>CUSTOMER ENVIRONMENT</h4>
-                 Lumira Version :
-                    <select  ng-model="selectedVersion" ng-options="version for version in versions" ng-mouseover="hint=true" ng-mouseleave="hint=false">
+        <h4>CUSTOMER ENVIRONMENT</h4>
+        Lumira Version : <select  ng-model="selectedVersion" ng-options="version for version in versions" ng-mouseover="hint=true" ng-mouseleave="hint=false">
                     </select>&nbsp;
                     <span ng-show="hint"  class="tooltiptext">please make sure both server clients are same version</span>
-                    <a  href="" >PAM link</a><br><br>
-                    BOE Version :  <input type="text" ng-model="boeVersion" />
-                    <a  href="" >PAM link</a><br><br>
-                    REST/Tomcat/WebSphere Details :  <input type="text" ng-model="webServerDetails"/><br>
-        </div>
-        <div>
-            <h4>OS DETAILS </h4> 
-            Server : <input type="text" name="server"/><br><br>
-            Client : <input type="text" name="client"/>
-            <h4>HEADING??</h4>
-            Tested in latest version and confirmed that issue persists :
+                    <a  href="" >PAM link</a><br>
+        BOE Version :  <input type="text" ng-model="boeVersion" /><a  href="" >PAM link</a><br>
+        REST/Tomcat/WebSphere Details :  <input type="text" ng-model="webServerDetails"/><br>
+
+        <h4>OS DETAILS </h4> 
+        Server : <input type="text" name="server"/><br>
+        Client : <input type="text" name="client"/>
+
+        <h4>HEADING??</h4>
+        Tested in latest version and confirmed that issue persists :
                     <label><input ng-model="test" type="radio" name="test" ng-value="'yes'">Yes</label>
-                    <label><input ng-model="test" type="radio" name="test" ng-value="'no'">No</label><br><br>
+                    <label><input ng-model="test" type="radio" name="test" ng-value="'no'">No</label><br>
                     <div ng-if="test=='yes'">
-                            Internal test result and set up details <br>
-                                  <textarea rows="5" ng-model="result"></textarea>
+                    Internal test result and set up details <br>
+                    <textarea rows="5" ng-model="result"></textarea>
                     </div>
                     <div ng-if="test=='no'" >
-                            Please provide a reason for not testing<br>
-                                  <textarea  rows="5" ng-model="reason" required></textarea>
-                    </div>   
-
-           
-            Configuration Issue : 
+                    Please provide a reason for not testing<br>
+                    <textarea  rows="5" ng-model="reason" required></textarea>
+                    </div>  
+        Configuration Issue : 
                     <label><input ng-model="config" type="radio" name="config" ng-value="'yes'">Yes</label>
-                    <label><input ng-model="config" type="radio" name="config" ng-value="'no'">No</label>
-        
-        </div>
-        <br> 
-
-
-
-        <input type="button" onclick="alert('Data Saved')" value="SUBMIT">
-
-   
-                          
-    </form>
-       
-    </body>
+                    <label><input ng-model="config" type="radio" name="config" ng-value="'no'">No</label><br>
+        Issue seen after upgrade
+                    <label><input ng-model="upgradeiss" type="radio" name="upgradeiss" ng-value="'yes'">Yes</label>
+                    <label><input ng-model="upgradeiss" type="radio" name="upgradeiss" ng-value="'no'">No</label>
+                    <div ng-if="upgradeiss=='yes'">
+                    please specify from which patch to patch details
+                    <input type="text" name="patchdet"/><br>
+                    Landscape Report Attached
+                        <label><input ng-model="landscaperep" type="radio"  ng-value="'yes'" required>Yes</label>
+                        <label><input ng-model="landscaperep" type="radio"  ng-value="'no'" required>No</label>
+                             <div ng-if="landscaperep=='no'"><a href="" target=_blank>How to generate</a></div>
+                             </div>
+        <h4>AUTHENTICATION</h4>
+        REST enabled  :<label><input ng-model="rest" type="radio" name="rest" ng-value="'yes'">Yes</label>
+                       <label><input ng-model="rest" type="radio" name="rest" ng-value="'no'">No</label><br>
+        SSL enabled   :<label><input ng-model="ssl" type="radio" name="ssl" ng-value="'yes'">Yes</label>
+                       <label><input ng-model="ssl" type="radio" name="ssl" ng-value="'no'">No</label><br>
+        SSO/SNC/SAML/Kerberos in place : <label><input ng-model="sso" type="radio" name="sso" ng-value="'yes'">Yes</label>
+                        <label><input ng-model="sso" type="radio" name="sso" ng-value="'no'">No</label><br>
+        Firewall or antivirus in place : <label><input ng-model="firewall" type="radio" name="firewall" ng-value="'yes'">Yes</label>
+                        <label><input ng-model="firewall" type="radio" name="firewall" ng-value="'no'">No</label><br>
+        Database : <input type="text" ng-model="database"/><br>     
+        <input type="button" onclick="alert('Data Saved')" value="SUBMIT">                      
+    </form>   
+</body>
 </html>
