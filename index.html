@@ -25,7 +25,21 @@
                     <a  href="" >PAM link</a><br>
         BOE Version :  <input type="text" ng-model="boeVersion" /><a  href="" >PAM link</a><br>
         REST/Tomcat/WebSphere Details :  <input type="text" ng-model="webServerDetails"/><br>
-
+        Heterogenous :<label><input ng-model="hetero" type="radio" name="hetero" ng-value="'yes'">Yes</label>
+                      <label><input ng-model="hetero" type="radio" name="hetero" ng-value="'no'">No</label><br> 
+                      <div ng-if="hetero=='yes'">
+                            No.of.nodes : <input ng-model="numofnodes" type="number" name="numofnodes"/><br>
+                            <div ng-repeat="n in [] | range:numofnodes">
+                            Node {{n+1}} in use?
+                            <label><input ng-model="values[$index].inuse" type="radio"  ng-value="'yes'">Yes</label>
+                            <label><input ng-model="values[$index].inuse" type="radio"  ng-value="'no'">No</label>
+                            <span ng-if="values[$index].inuse=='yes'">
+                            Lumira server node : <input type="text"  ng-model="values[$index].node" /> os : <input type="text"  ng-model="values[$index].os"/>
+                            </span> </div>             
+                            Landscape Report Attached: <label><input type="radio" name="LRA" value="yes" >Yes</label>
+                            <label><input type="radio" name="LRA" value="no" >No</label><br>
+                      </div>    
+     
         <h4>OS DETAILS </h4> 
         Server : <input type="text" name="server"/><br>
         Client : <input type="text" name="client"/>
@@ -65,8 +79,44 @@
                         <label><input ng-model="sso" type="radio" name="sso" ng-value="'no'">No</label><br>
         Firewall or antivirus in place : <label><input ng-model="firewall" type="radio" name="firewall" ng-value="'yes'">Yes</label>
                         <label><input ng-model="firewall" type="radio" name="firewall" ng-value="'no'">No</label><br>
-        Database : <input type="text" ng-model="database"/><br>     
+        Database : <input type="text" ng-model="database"/><br> 
+        Summary of the issue:<textarea rows="5"></textarea>
+        Steps to reproduce:<textarea rows="12"></textarea>
+        Trace logs,screenshot and video are collected?<label><input ng-model="logcollected" type="radio" name="logcollected" ng-value="'yes'">Yes</label>
+        <label><input ng-model="logcollected" type="radio" name="logcollected" ng-value="'no'">No</label>
+        <a href="">how to enable the high level logs</a><br>
+        Description(error) or comment if any:- <textarea rows="5"></textarea>
+        Issue is reproducible internally? <input type="radio" name="reproducible" value="yes" ng-model="reproducible">Yes
+                                          <input type="radio" name="reproducible" value="no" ng-model="reproducible">no<br>
+                                          <div ng-show="reproducible=='yes'">
+                                           Internal system and query details:<input type="text"></div>
+                                          <div ng-show="reproducible=='no'">
+                                          Customer system(WTS/SAP NI, SAP HANA, HTTP) available and issue is reproducible using that?
+                                          <input type="radio" name="systemavailable" value="yes" ng-model="systemavailable">Yes
+                                          <input type="radio" name="systemavailable" value="no" ng-model="systemavailable">no<br>
+                                          <div1 ng-show="systemavailable=='yes'">
+                                          customer system and query details :<input type="text">
+                                          </div1>
+                                          <div2 ng-show="systemavailable=='no'">
+                                           Screenshot or video or logs attached in case issue is not reproducible in house?
+                                           <input type="radio" name="attachement" value="yes" ng-model="attachement" required>Yes
+                                           <input type="radio" name="attachement" value="no" ng-model="attachement">no<br>
+                                           </div2>
+                                           </div>  
+        <p>CUSTOMER CONTACT (in case if it different than customer data)  </p>
+        COMPANY NAME : <input type="text"><br>
+        Contact person Name : <input type="text"><br>
+        Email/skype/webex : <input type="email"><br>
+        Phone : <input type="number"  ><br>
+        Time zone : <input type="datetime-local"><br>
+        Please specify SAP NOTE links that already checked : <input type="url">
+        BUSINESS IMPACT : <textarea rows="5"></textarea><br>
         <input type="button" onclick="alert('Data Saved')" value="SUBMIT">                      
-    </form>   
+    </form> 
+    
+Check out how SAP Support is Innovating to Better Support You<br>
+<a  href="https://support.sap.com/en/my-support/incidents.html#section_1554503147" target=_blank >SAP Expert Chat</a>  |
+<a  href="https://support.sap.com/en/my-support/incidents.html#section_1575600800" target=_blank>Schedule an Expert</a>  |
+<a  href="https://launchpad.support.sap.com/#/notes/2492603" target=_blank>Guided Answers</a>  
 </body>
 </html>

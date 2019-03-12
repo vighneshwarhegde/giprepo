@@ -1,4 +1,4 @@
-input,select{
+input,select,p{
     margin-bottom: 20px;
   }
 input[type=url] {
@@ -16,6 +16,11 @@ input[type=button]{
     padding:5px;
     border-radius: 4px
 }
+div.LSN {
+  width:100%;
+  height:30%;
+}
+
 .tooltiptext {
   width: 400px;
   background-color: #74a2ed;
@@ -26,6 +31,7 @@ input[type=button]{
  
 }
 textarea{
+  margin: 10px 0px 20px 0px;
   width:100%
 }
  
